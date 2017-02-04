@@ -17,7 +17,8 @@ class solaris_tidy::cde(
   # MUST sort the lists or they arrive in different orders and trigger extra
   # corrective changes
   exec { "dt_config_dirs":
-    onlyif  => 'bash -c \'[[ $(cd /etc/dt/config && find . -name sys.resources | sort) != $(cd /usr/dt/config && find . -name sys.resources | sort) ]]\'',
+    onlyif  => 'bash -c \'[[ $(cd /etc/dt/config && find . -name sys.resources | sort) != $(cd /usr/dt/config && find . \
+-name sys.resources | sort) ]]\'',
     command => 'bash -c \'cd /etc/dt/config && mkdir -p $(cd /usr/dt/config && find . -name sys.resources -exec dirname {} \; )\'',
     path    => [ '/bin', '/usr/bin'],
   }
