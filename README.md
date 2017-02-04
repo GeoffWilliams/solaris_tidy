@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/GeoffWilliams/solaris_tidy.svg?branch=master)](https://travis-ci.org/GeoffWilliams/solaris_tidy)
 # solaris_tidy
 
 #### Table of Contents
