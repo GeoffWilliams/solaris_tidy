@@ -2,10 +2,17 @@
 #
 # Configure stack protection
 class solaris_tidy::stack_protection {
-# # if [ ! "`grep noexec_user_stack=
-# /etc/system`"]; then cat
-# <<END_CFG >>/etc/system * Attempt to
-# prevent and log stack-smashing
-# attacks set noexec_user_stack=1 set
-# noexec_user_stack_log=1 END_CFG fi
+  file_line { "/etc/system noexec_user_stack":
+    ensure => present,
+    path   => "/etc/system",
+    line   => "set noexec_user_stack=1",
+    match  => "set\s+noexec_user_stack=",
+  }
+
+  file_line { "/etc/system noexec_user_stack_log":
+    ensure => present,
+    path   => "/etc/system",
+    line   => "set noexec_user_stack_log=1",
+    match  => "set\s+noexec_user_stack_log=",
+  }
 }
