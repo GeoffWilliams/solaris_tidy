@@ -22,6 +22,11 @@ class solaris_tidy::logging {
     path    => ['/bin','/usr/bin','/sbin','/usr/sbin'],
   }
 
+  service { "svc:/system/system-log":
+    ensure => running,
+    enable => true,
+  }
+
   # Enable FTP debug logging
   $ftp_exec = 'exec="/usr/sbin/in.ftpd -a -l -d"'
   exec { "inetadm svc:/network/ftp exec":
