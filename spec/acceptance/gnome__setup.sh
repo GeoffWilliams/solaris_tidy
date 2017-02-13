@@ -1,4 +1,5 @@
 mkdir -p /usr/openwin/lib/app-defaults/
+mkdir -p /etc/X11/gdm/
 cat > /usr/openwin/lib/app-defaults/XScreenSaver <<'END'
 ! To show the time only:
 ! For 24 hour time:

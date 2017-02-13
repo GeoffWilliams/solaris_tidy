@@ -4,22 +4,30 @@
 #
 # @param retries How many login retries to allow
 class solaris_tidy::etc_default_login(
-    $retries = 3
+    $retries = "3",
+    $umask   = "077",
 ) {
 
-  # Restrict root Login to System Console
-  file_line { "/etc/default/login CONSOLE":
+  Shellvar {
     ensure => present,
-    path   => "/etc/default/login",
-    line   => "CONSOLE=/dev/console",
-    match  => "^CONSOLE="
+    target => "/etc/default/login",
+  }
+
+  # Restrict root Login to System Console
+  shellvar { "/etc/default/login CONSOLE":
+    variable => "CONSOLE",
+    value    => "/dev/console",
   }
 
   # limit retries
-  file_line { "/etc/default/login RETRIES":
-    ensure => present,
-    path   => "/etc/default/login",
-    line   => "RETRIES=${retries}",
-    match  => "^RETRIES="
+  shellvar { "/etc/default/login RETRIES":
+    variable => "RETRIES",
+    value    => $retries,
   }
+
+  shellvar { "/etc/default/login UMASK":
+    variable => "UMASK",
+    value    => $umask,
+  }
+
 }

@@ -4,11 +4,11 @@
 class solaris_tidy::etc_security_policy {
 
   # Set Retry Limit for Account Lockout
-  file_line { "/etc/security/policy.conf LOCK_AFTER_RETRIES":
-    ensure => present,
-    path   => "/etc/security/policy.conf ",
-    line   => "LOCK_AFTER_RETRIES=YES",
-    match  => "^LOCK_AFTER_RETRIES=",
+  shellvar { "/etc/security/policy.conf LOCK_AFTER_RETRIES":
+    ensure   => present,
+    variable => "LOCK_AFTER_RETRIES",
+    target   => "/etc/security/policy.conf ",
+    value    => "YES",
   }
 
 }

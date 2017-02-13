@@ -3,8 +3,10 @@
 # Set inactivity timeouts for CDE by writing files to /etc/dt/config for each
 # locale in the /usr/dt/config directory
 class solaris_tidy::cde(
-  $saver_timeout = 10,
-  $lock_timeout = 10,
+  $saver_timeout  = 10,
+  $lock_timeout   = 10,
+  $banner_title   = false,
+  $banner_message = false,
 ) {
 
   file { "/etc/dt":
@@ -47,6 +49,20 @@ class solaris_tidy::cde(
 \"/etc/dt/config/\$file\"; done'",
     path    => [ '/bin', '/usr/bin'],
     require => [File["/etc/dt/config"], Exec["dt_config_dirs"],],
+  }
+
+  # Greeting message for CDE
+  if $banner_title and $banner_message {
+    $res_content="Dtlogin*greeting.labelString: ${banner_title}\nDtlogin*greeting.persLabelString: ${banner_message}"
+
+    exec { "dt_resource_files":
+      unless  => "bash -c 'cd /usr/dt/config/ && for file in */Xresources ; do if [[ \"$(cat /etc/dt/config/\$file)\" \
+!= \"${res_content}\" ]]; then exit 1; fi; done'",
+      command => "bash -c 'for file in $(cd /usr/dt/config && find . -name Xresources) ; do echo \"${res_content}\" >> \
+\"/etc/dt/config/\$file\"; done'",
+      path    => [ '/bin', '/usr/bin'],
+      require => [File["/etc/dt/config"], Exec["dt_config_dirs"],],
+    }
   }
 
   chmod_r { "/etc/dt/config/*":

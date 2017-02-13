@@ -1,2 +1,4 @@
 # @PDQTest
-include solaris_tidy::gnome
+class { "solaris_tidy::gnome":
+  banner_message => "Authorised intruders only, imposters will be shot!",
+}

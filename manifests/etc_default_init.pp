@@ -9,10 +9,10 @@ class solaris_tidy::etc_default_init(
 ) {
 
   # set daemon umask
-  file_line { "/etc/default/init CMASK":
-    ensure => present,
-    path   => "/etc/default/init",
-    match  => "/^CMASK/",
-    line   => "CMASK=${umask}",
+  shellvar { "/etc/default/init CMASK":
+    ensure   => present,
+    variable => "CMASK",
+    target   => "/etc/default/init",
+    value    => $umask,
   }
 }

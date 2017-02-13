@@ -2,9 +2,10 @@
 #
 # Set inactivity timeouts for gnome (XScreenSaver)
 class solaris_tidy::gnome(
-    $timeout      = "0:10:00",
-    $lock_timeout = "0:00:00",
-    $lock         = "True",
+    $timeout        = "0:10:00",
+    $lock_timeout   = "0:00:00",
+    $lock           = "True",
+    $banner_message = false,
 ) {
 
   # Solaris 11 uses different path but we only support solaris 10
@@ -37,5 +38,21 @@ class solaris_tidy::gnome(
   file_line { "${xscreensaver} (lock)":
     match => '\*lock:',
     line  => "\\*lock: ${lock}",
+  }
+
+  shellvar { "/etc/X11/gdm/gdm.conf Greeter":
+    ensure   => present,
+    variable => "Greeter",
+    target   => "/etc/X11/gdm/gdm.conf",
+    value    => "/usr/bin/gdmlogin",
+  }
+
+  if $banner_message {
+    shellvar { "/etc/X11/gdm/gdm.conf Welcome":
+      ensure   => present,
+      variable => "Welcome",
+      target   => "/etc/X11/gdm/gdm.conf",
+      value    => $banner_message,
+    }
   }
 }

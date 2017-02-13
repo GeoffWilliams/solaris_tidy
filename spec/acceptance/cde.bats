@@ -45,3 +45,15 @@
 @test "DE system resources group correct" {
   [[ $(stat -c %G /etc/dt/config/DE/sys.resources) == "sys" ]]
 }
+
+@test "C system resources labelString populated" {
+  grep 'Dtlogin\*greeting.labelString' /etc/dt/config/C/Xresources
+}
+
+@test "DE system resources persLabelString populated" {
+  grep 'Dtlogin\*greeting.persLabelString'  /etc/dt/config/DE/Xresources
+}
+
+@test 'double check value propagated' {
+  grep 'lawn'  /etc/dt/config/DE/Xresources
+}
