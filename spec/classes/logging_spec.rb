@@ -3,6 +3,9 @@ describe 'solaris_tidy::logging' do
   let :facts do
     {
       :operatingsystem => 'SunOS',
+      :os => {
+        :family => "Solaris"
+      },
     }
   end
   context "catalog compiles" do

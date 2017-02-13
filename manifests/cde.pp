@@ -7,6 +7,20 @@ class solaris_tidy::cde(
   $lock_timeout = 10,
 ) {
 
+  file { "/etc/dt":
+    ensure => directory,
+    owner  => "root",
+    group  => "root",
+    mode   => "0755",
+  }
+
+  file { "/etc/dt/config":
+    ensure => directory,
+    owner  => "root",
+    group  => "sys",
+    mode   => "0555",
+  }
+
   # heredoc seems to break exec for some reason...
   $file_content="dtsession*saverTimeout: ${saver_timeout}\ndtsession*lockTimeout: ${lock_timeout}"
 
@@ -21,6 +35,7 @@ class solaris_tidy::cde(
 -name sys.resources | sort) ]]\'',
     command => 'bash -c \'cd /etc/dt/config && mkdir -p $(cd /usr/dt/config && find . -name sys.resources -exec dirname {} \; )\'',
     path    => [ '/bin', '/usr/bin'],
+    require => File["/etc/dt/config"],
   }
 
   # for each shipped locale, replace contents of corresponding file under /etc/dt/config
@@ -28,17 +43,20 @@ class solaris_tidy::cde(
   exec { "dt_config_files":
     unless  => "bash -c 'cd /usr/dt/config/ && for file in */sys.resources ; do if [[ \"$(cat /etc/dt/config/\$file)\" \
 != \"${file_content}\" ]]; then exit 1; fi; done'",
-    command => "bash -c 'for file in $(cd /usr/dt/config && find . -name sys.resources) ; do echo \"${file_content}\" > \
+    command => "bash -c 'for file in $(cd /usr/dt/config && find . -name sys.resources) ; do echo \"${file_content}\" >> \
 \"/etc/dt/config/\$file\"; done'",
     path    => [ '/bin', '/usr/bin'],
+    require => [File["/etc/dt/config"], Exec["dt_config_dirs"],],
   }
 
-  chmod_r { "/etc/dt/config":
+  chmod_r { "/etc/dt/config/*":
     want_mode => "0444",
+    require   => Exec["dt_config_files"],
   }
 
   chown_r { "/etc/dt/config":
     want_user  => "root",
     want_group => "sys",
+    require    => Exec["dt_config_files"],
   }
 }
