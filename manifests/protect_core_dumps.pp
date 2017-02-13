@@ -2,7 +2,12 @@
 #
 # Configure solaris to dump cores on a separate partition with restricted
 # permissions
-class solaris_tidy::protect_core_dumps {
+#
+# @param pattern Filename pattern for core dumps
+class solaris_tidy::protect_core_dumps(
+    $pattern = "/var/cores/core_%n_%f_%u_%g_%t_%p",
+) {
+
   file { "/var/cores":
     ensure => directory,
     owner  => "root",
@@ -37,9 +42,26 @@ class solaris_tidy::protect_core_dumps {
   #     global core dump logging: enabled !!!
   #
   # So we need to run if any of the above conditions incorrect
-  exec { "configure global core dump":
-    command => "coreadm -g /var/cores/core_%n_%f_%u_%g_%t_%p -e log -e global",
+  $coreadm = "coreadm | "
+  $grep_pattern = "${coreadm} grep 'global core file pattern: ${pattern}''"
+  $grep_dump    = "${coreadm} grep 'global core dumps: enabled'"
+  $grep_log     = "${coreadm} grep ' global core dump logging: enabled'"
 
+  exec { "coreadm file pattern":
+    command => "coreadm -g ${pattern}",
+    unless  => $grep_pattern,
+    path    => ['/usr/bin', '/bin'],
   }
-#  coreadm |nawk -F ': ' '/global core file pattern/ { print $2 }'
+
+  exec { "coreadm global dump":
+    command => "coreadm -e global",
+    unless  => $grep_dump,
+    path    => ['/usr/bin', '/bin'],
+  }
+
+  exec { "coreadm global log":
+    command => "coreadm -e log",
+    unless  => $grep_log,
+    path    => ['/usr/bin', '/bin'],
+  }
 }
