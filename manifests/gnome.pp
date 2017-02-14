@@ -40,19 +40,22 @@ class solaris_tidy::gnome(
     line  => "\\*lock: ${lock}",
   }
 
-  shellvar { "/etc/X11/gdm/gdm.conf Greeter":
-    ensure   => present,
-    variable => "Greeter",
-    target   => "/etc/X11/gdm/gdm.conf",
-    value    => "/usr/bin/gdmlogin",
+  ini_setting { "/etc/X11/gdm/gdm.conf Greeter":
+    ensure  => present,
+    path    => '/etc/X11/gdm/gdm.conf',
+    section => 'daemon',
+    setting => 'Greeter',
+    value   => '/usr/bin/gdmlogin',
   }
 
   if $banner_message {
-    shellvar { "/etc/X11/gdm/gdm.conf Welcome":
-      ensure   => present,
-      variable => "Welcome",
-      target   => "/etc/X11/gdm/gdm.conf",
-      value    => $banner_message,
+    ini_setting { "/etc/X11/gdm/gdm.conf Welcome":
+      ensure  => present,
+      path    => '/etc/X11/gdm/gdm.conf',
+      section => 'greeter',
+      setting => 'Welcome',
+      value   => $banner_message,
     }
+
   }
 }
