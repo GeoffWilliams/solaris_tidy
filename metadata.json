@@ -12,7 +12,7 @@
     {"name":"geoffwilliams-chmod_r","version_requirement":"0.1.2"},
     {"name":"geoffwilliams-chown_r","version_requirement":"0.2.0"},
     {"name":"geoffwilliams-comment_line","version_requirement":"0.1.0"},
-    {"name":"geoffwilliams-cron","version_requirement":"0.1.1"},
+    {"name":"geoffwilliams-cron","version_requirement":"0.1.3"},
     {"name":"herculesteam-augeasproviders_shellvar","version_requirement":"2.2.1"},
     {"name":"puppetlabs-inifile","version_requirement":"1.6.0"}
   ],
