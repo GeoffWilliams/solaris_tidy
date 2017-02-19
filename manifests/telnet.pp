@@ -7,7 +7,7 @@ class solaris_tidy::telnet {
     ensure => present,
     path   => "/etc/default/telnetd",
     line   => "BANNER=",
-    match  => "BANNER=",
+    match  => "^BANNER=",
   }
 
   # stop telnet service
