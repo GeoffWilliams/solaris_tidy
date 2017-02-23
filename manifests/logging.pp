@@ -29,9 +29,10 @@ class solaris_tidy::logging {
 
   # Enable FTP debug logging
   $ftp_exec = 'exec="/usr/sbin/in.ftpd -a -l -d"'
+
   exec { "inetadm svc:/network/ftp exec":
     command => "inetadm -m svc:/network/ftp ${ftp_exec}",
-    unless  => "inetadm -l svc:/network/ftp |grep \"${ftp_exec}\"",
+    unless  => "inetadm -l svc:/network/ftp |grep '${ftp_exec}'",
     path    => ['/bin','/usr/bin','/sbin','/usr/sbin'],
   }
 
