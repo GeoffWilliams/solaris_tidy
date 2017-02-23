@@ -5,7 +5,7 @@ class solaris_tidy::cron(
     $allow_users = ['root']
 ) {
   class {"cron::cron_allow_deny":
-    allow_users => ['root'],
+    allow_users => $allow_users,
   }
 
   include cron::protect_log
