@@ -1,6 +1,6 @@
 {
   "name": "geoffwilliams-solaris_tidy",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": "geoffwilliams",
   "summary": "Tidy up and lock down little solaris niggles",
   "license": "Apache-2.0",
