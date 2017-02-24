@@ -1,6 +1,23 @@
 # Solaris_tidy::Etc_default_passwd
 #
 # Manage settings in /etc/default/passwd (password strength and ageing policy)
+#
+# @param maxweeks Maximum weeks of password validity
+# @param minweeks Minimum weeks of password validity
+# @param warnweeks Weeks validity remaining before warnings are displayed
+# @param passlength Minimum password length
+# @param namecheck Check for names
+# @param history Historic passwords to keep
+# @param mindiff Minium different characters
+# @param minalpha Minimum alphanumeric characters
+# @param minupper Minimum upper case characters
+# @param minlower Minimum lower case characters
+# @param minnonalpha Minimum non-alphanumeric characters
+# @param maxrepeats Maximum allowed reapeated characters
+# @param whitespace Allow whitespace in passwords
+# @param dictiondbdir Dictionary DB Dir
+# @param dictionlist Wordlist compare passwords to,
+
 class solaris_tidy::etc_default_passwd(
     $maxweeks     = "13",
     $minweeks     = "1",

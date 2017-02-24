@@ -4,10 +4,6 @@
 #### Table of Contents
 
 1. [Description](#description)
-1. [Setup - The basics of getting started with solaris_tidy](#setup)
-    * [What solaris_tidy affects](#what-solaris_tidy-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with solaris_tidy](#beginning-with-solaris_tidy)
 1. [Usage - Configuration options and additional functionality](#usage)
 1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 1. [Limitations - OS compatibility, etc.](#limitations)
@@ -15,70 +11,74 @@
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what
-problem it solves. This is your 30-second elevator pitch for your module.
-Consider including OS/Puppet version it works with.
-
-You can give more descriptive information in a second paragraph. This paragraph
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?" If your module has a range of functionality (installation, configuration,
-management, etc.), this is the time to mention it.
+Apply miscellaneous "tidying up" settings to Solaris (10)
 
 ## Setup
 
-### What solaris_tidy affects **OPTIONAL**
+### What solaris_tidy affects
 
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
+The module necessarily touches many parts of the system in order to perform the required changes.  Consult the module source code in order to understand what is going on under the hood.
 
-If there's more that they should know about, though, this is the place to mention:
-
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section
-here.
-
-### Beginning with solaris_tidy
-
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most
-basic use of the module.
+Since `solaris_tidy` locks down critical security settings, its vital that user's understand how and why it works to prevent lockout or misconfiguration scenarios.
 
 ## Usage
 
-This section is where you describe how to customize, configure, and do the
-fancy stuff with your module here. It's especially helpful if you include usage
-examples and code samples for doing things with your module.
+Most classes will need to be loaded using the `class` resource syntax in order to pass the appropriate class defaults, eg:
+
+```puppet
+class { "foo:bar":
+  param1 => "value1",
+  param2 => "value2",
+}
+```
+
+Parameters, where available, are documented inside the individual classes.  For a complete reference, either consult the [module source code](manifests) or the [puppet-strings](https://github.com/puppetlabs/puppet-strings) [generated documentation](doc/index.html).
 
 ## Reference
 
-Here, include a complete list of your module's classes, types, providers,
-facts, along with the parameters for each. Users refer to this section (thus
-the name "Reference") to find specific details; most users don't read it per
-se.
+### Classes
+`solaris_tidy::cron` Restrict access to cron
+`solaris_tidy::disable_network_routing` Disable TCP connection forwarding
+`solaris_tidy::disable_serial_login` Disable login on serial ports
+`solaris_tidy::etc_default_init` Set daemon umask
+`solaris_tidy::etc_default_keyserv` Entires in /etc/default/keyserv
+`solaris_tidy::etc_default_login` Entries in /etc/default/login
+`solaris_tidy::etc_default_passwd` Entries in /etc/default/passwd
+`solaris_tidy::etc_security_policy` Entries in /etc/security/policy
+`solaris_tidy::ftp` Lockdown the FTP daemon
+`solaris_tidy::gnome` Lockdown Gnome
+`solaris_tidy::inetd` Remove specified inetd services
+`solaris_tidy::logging` Configure various options for logging
+`solaris_tidy::mesg` Disable talk globally by default
+`solaris_tidy::pam` Disable rlogin in pam
+`solaris_tidy::password_policy_enforcement` Find and restrict users not complying with password policy
+`solaris_tidy::permissions` General OS permissions
+`solaris_tidy::protect_core_dumps` Configure core dumps
+`solaris_tidy::stack_protection` Configure stack protection
+`solaris_tidy::strong_tcp_sequence` Enable strong TCP sequence
+`solaris_tidy::telnet` Disable telnet and set its banner
+`solaris_tidy::umask_enforcement` Enforce correct umask in global login defaults
+
+### Facts
+* `openwin_installed` Detect the presence of openwin to see if Gnome can be locked down
 
 ## Limitations
-
-This is where you list OS compatibility, version compatibility, etc. If there
-are Known Issues, you might want to include them under their own heading here.
+* Solaris 10 only
+* Not supported by Puppet, Inc.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+PRs accepted :)
 
-## Release Notes/Contributors/Etc. **Optional**
+## Testing
+This module supports testing using [PDQTest](https://github.com/GeoffWilliams/pdqtest).
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel
-are necessary or important to include here. Please use the `## ` header.
+
+Test can be executed with:
+
+```
+bundle install
+bundle exec pdqtest all
+```
+
+See `.travis.yml` for a working CI example

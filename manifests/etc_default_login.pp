@@ -3,6 +3,7 @@
 # Entries for /etc/default/login
 #
 # @param retries How many login retries to allow
+# @param umask Default umask to apply
 class solaris_tidy::etc_default_login(
     $retries = "3",
     $umask   = "077",

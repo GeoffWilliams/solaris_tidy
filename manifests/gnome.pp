@@ -1,6 +1,14 @@
 # Solaris_tidy::gnome
 #
-# Set inactivity timeouts for gnome (XScreenSaver)
+# Set inactivity timeouts for gnome (XScreenSaver) and remove sensitive
+# information from banner messages
+#
+# @param timeout How long to wait before activating the screensaver
+# @param lock_timeout How long to wait after the screensaver activates before
+#   locking the screen
+# @param lock Quoted boolean in a string representing whether the screen should
+#   be locked or not
+# @param banner_message Message to display to users when logging in or unlocking
 class solaris_tidy::gnome(
     $timeout        = "0:10:00",
     $lock_timeout   = "0:00:00",

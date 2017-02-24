@@ -3,9 +3,9 @@
 # Ensure that a minimal set of dangerous users are always prevented from using
 # ftp and create a banner file if requested
 #
-# @param banner
+# @param banner_message Banner message to display to users loggin in to FTP
 class solaris_tidy::ftp(
-    $banner = false,
+    $banner_message = false,
 ) {
 
   #
@@ -48,14 +48,14 @@ class solaris_tidy::ftp(
     }
   }
 
-  # FTP Warning banner
+  # FTP Warning banner_message
   if $banner {
     file { "/etc/ftpd/banner.msg":
       ensure  => file,
       owner   => "root",
       group   => "root",
       mode    => "0444",
-      content => $banner,
+      content => $banner_message,
     }
   }
 }

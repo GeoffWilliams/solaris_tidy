@@ -1,6 +1,8 @@
 # Solaris_tidy::Cron
 #
 # Manage common cron settings and permissions
+#
+# @param allow_users List of users to allow access to cron scheduling
 class solaris_tidy::cron(
     $allow_users = ['root']
 ) {
