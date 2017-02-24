@@ -73,10 +73,11 @@
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>Solaris_tidy::Ftp</p>
+    
+<p>Solaris_tidy::Ftp</p>
 
-<p>Ensure that a minimal set of dangerous users are always prevented from using
-ftp and create a banner file if requested</p>
+<p>Ensure that a minimal set of dangerous users are always prevented from
+using ftp and create a banner file if requested</p>
 
   </div>
 </div>
@@ -96,7 +97,8 @@ ftp and create a banner file if requested</p>
       
       
         &mdash;
-        <div class='inline'><p>Banner message to display to users loggin in to FTP</p>
+        <div class='inline'>
+<p>Banner message to display to users loggin in to FTP</p>
 </div>
       
     </li>
@@ -215,7 +217,7 @@ class solaris_tidy::ftp(
   }
 
   # FTP Warning banner_message
-  if $banner {
+  if $banner_message {
     file { &quot;/etc/ftpd/banner.msg&quot;:
       ensure  =&gt; file,
       owner   =&gt; &quot;root&quot;,
@@ -232,7 +234,7 @@ class solaris_tidy::ftp(
 </div>
 
       <div id="footer">
-  Generated on Sat Feb 25 00:30:45 2017 by
+  Generated on Sat Feb 25 00:54:09 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.2.6).
 </div>

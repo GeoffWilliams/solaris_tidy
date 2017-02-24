@@ -57,90 +57,89 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'><p><a href="https://travis-ci.org/GeoffWilliams/solaris_tidy"><img src="https://travis-ci.org/GeoffWilliams/solaris_tidy.svg?branch=master" alt="Build Status"></a></p>
+      <div id="content"><div id='filecontents'>
+<p><a href="https://travis-ci.org/GeoffWilliams/solaris_tidy"><img
+src="https://travis-ci.org/GeoffWilliams/solaris_tidy.svg?branch=master"></a></p>
 
-<h1>solaris_tidy</h1>
+<h1 id="label-solaris_tidy">solaris_tidy</h1>
 
-<h4>Table of Contents</h4>
+<h4 id="label-Table+of+Contents">Table of Contents</h4>
+<ol><li>
+<p><a href="#description">Description</a></p>
+</li><li>
+<p><a href="#usage">Usage - Configuration options and additional
+functionality</a></p>
+</li><li>
+<p><a href="#reference">Reference - An under-the-hood peek at what the module
+is doing and how</a></p>
+</li><li>
+<p><a href="#limitations">Limitations - OS compatibility, etc.</a></p>
+</li><li>
+<p><a href="#development">Development - Guide for contributing to the
+module</a></p>
+</li></ol>
 
-<ol>
-<li><a href="#description">Description</a></li>
-<li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
-<li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
-<li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
-<li><a href="#development">Development - Guide for contributing to the module</a></li>
-</ol>
+<h2 id="label-Description">Description</h2>
 
-<h2>Description</h2>
+<p>Apply miscellaneous “tidying up” settings to Solaris (10)</p>
 
-<p>Apply miscellaneous &quot;tidying up&quot; settings to Solaris (10)</p>
+<h2 id="label-Setup">Setup</h2>
 
-<h2>Setup</h2>
+<h3 id="label-What+solaris_tidy+affects">What solaris_tidy affects</h3>
 
-<h3>What solaris_tidy affects</h3>
+<p>The module necessarily touches many parts of the system in order to perform
+the required changes. Consult the module source code in order to understand
+what is going on under the hood.</p>
 
-<p>The module necessarily touches many parts of the system in order to perform the required changes.  Consult the module source code in order to understand what is going on under the hood.</p>
+<p>Since <code>solaris_tidy</code> locks down critical security settings, its
+vital that user&#39;s understand how and why it works to prevent lockout or
+misconfiguration scenarios.</p>
 
-<p>Since <code>solaris_tidy</code> locks down critical security settings, its vital that user&#39;s understand how and why it works to prevent lockout or misconfiguration scenarios.</p>
+<h2 id="label-Usage">Usage</h2>
 
-<h2>Usage</h2>
+<p>Most classes will need to be loaded using the <code>class</code> resource
+syntax in order to pass the appropriate class defaults, eg:</p>
 
-<p>Most classes will need to be loaded using the <code>class</code> resource syntax in order to pass the appropriate class defaults, eg:</p>
-
-<pre class="code puppet"><code class="puppet">class { &quot;foo:bar&quot;:
+<pre class="code ruby"><code class="ruby">class { &quot;foo:bar&quot;:
   param1 =&gt; &quot;value1&quot;,
   param2 =&gt; &quot;value2&quot;,
-}
+}</code></pre>
+
+<p>Parameters, where available, are documented inside the individual classes.
+See <a href="#reference">Reference section</a>.</p>
+
+<h2 id="label-Reference">Reference</h2>
+
+<p>Reference documentation is generated directly from source code using <a
+href="https://github.com/puppetlabs/puppet-strings">puppet-strings</a>. You
+may regenerate the documentation by running:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_puppet'>puppet</span> <span class='id identifier rubyid_strings'>strings</span>
 </code></pre>
 
-<p>Parameters, where available, are documented inside the individual classes.  For a complete reference, either consult the <a href="manifests">module source code</a> or the <a href="https://github.com/puppetlabs/puppet-strings">puppet-strings</a> <a href="doc/index.html">generated documentation</a>.</p>
+<p>Or you may view the current <a
+href="https://rawgit.com/GeoffWilliams/solaris_tidy/master/doc/index.html">generated
+documentation</a>.</p>
 
-<h2>Reference</h2>
+<p>The documentation is no substitute for reading and understanding the module
+source code, and all users should ensure they are familiar and comfortable
+with the operations this module performs before using it.</p>
 
-<h3>Classes</h3>
+<h2 id="label-Limitations">Limitations</h2>
+<ul><li>
+<p>Solaris 10 only</p>
+</li><li>
+<p>Not supported by Puppet, Inc.</p>
+</li></ul>
 
-<p><code>solaris_tidy::cron</code> Restrict access to cron
-<code>solaris_tidy::disable_network_routing</code> Disable TCP connection forwarding
-<code>solaris_tidy::disable_serial_login</code> Disable login on serial ports
-<code>solaris_tidy::etc_default_init</code> Set daemon umask
-<code>solaris_tidy::etc_default_keyserv</code> Entires in /etc/default/keyserv
-<code>solaris_tidy::etc_default_login</code> Entries in /etc/default/login
-<code>solaris_tidy::etc_default_passwd</code> Entries in /etc/default/passwd
-<code>solaris_tidy::etc_security_policy</code> Entries in /etc/security/policy
-<code>solaris_tidy::ftp</code> Lockdown the FTP daemon
-<code>solaris_tidy::gnome</code> Lockdown Gnome
-<code>solaris_tidy::inetd</code> Remove specified inetd services
-<code>solaris_tidy::logging</code> Configure various options for logging
-<code>solaris_tidy::mesg</code> Disable talk globally by default
-<code>solaris_tidy::pam</code> Disable rlogin in pam
-<code>solaris_tidy::password_policy_enforcement</code> Find and restrict users not complying with password policy
-<code>solaris_tidy::permissions</code> General OS permissions
-<code>solaris_tidy::protect_core_dumps</code> Configure core dumps
-<code>solaris_tidy::stack_protection</code> Configure stack protection
-<code>solaris_tidy::strong_tcp_sequence</code> Enable strong TCP sequence
-<code>solaris_tidy::telnet</code> Disable telnet and set its banner
-<code>solaris_tidy::umask_enforcement</code> Enforce correct umask in global login defaults</p>
-
-<h3>Facts</h3>
-
-<ul>
-<li><code>openwin_installed</code> Detect the presence of openwin to see if Gnome can be locked down</li>
-</ul>
-
-<h2>Limitations</h2>
-
-<ul>
-<li>Solaris 10 only</li>
-<li>Not supported by Puppet, Inc.</li>
-</ul>
-
-<h2>Development</h2>
+<h2 id="label-Development">Development</h2>
 
 <p>PRs accepted :)</p>
 
-<h2>Testing</h2>
+<h2 id="label-Testing">Testing</h2>
 
-<p>This module supports testing using <a href="https://github.com/GeoffWilliams/pdqtest">PDQTest</a>.</p>
+<p>This module supports testing using <a
+href="https://github.com/GeoffWilliams/pdqtest">PDQTest</a>.</p>
 
 <p>Test can be executed with:</p>
 
@@ -152,7 +151,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Sat Feb 25 00:30:45 2017 by
+  Generated on Sat Feb 25 00:54:09 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.2.6).
 </div>
