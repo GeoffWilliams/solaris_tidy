@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: solaris_tidy::etc_default_passwd
+  
+    &mdash; Documentation by YARD 0.9.8
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::solaris_tidy::etc_default_passwd";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">solaris_tidy::etc_default_passwd</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: solaris_tidy::etc_default_passwd</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      manifests/etc_default_passwd.pp
+    </dd>
+  </dl>
+</div>
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Solaris_tidy::Etc_default_passwd</p>
+
+<p>Manage settings in /etc/default/passwd (password strength and ageing policy)</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>maxweeks</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;13&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Maximum weeks of password validity</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>minweeks</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;1&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Minimum weeks of password validity</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>warnweeks</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;4&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Weeks validity remaining before warnings are displayed</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passlength</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;8&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Minimum password length</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>namecheck</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;YES&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Check for names</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>history</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;10&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Historic passwords to keep</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mindiff</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;3&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Minium different characters</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>minalpha</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;2&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Minimum alphanumeric characters</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>minupper</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;1&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Minimum upper case characters</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>minlower</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;1&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Minimum lower case characters</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>minnonalpha</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;1&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Minimum non-alphanumeric characters</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>maxrepeats</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;0&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Maximum allowed reapeated characters</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>whitespace</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;YES&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Allow whitespace in passwords</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dictiondbdir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;/var/passwd&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Dictionary DB Dir</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dictionlist</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;/usr/share/lib/dict/words&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Wordlist compare passwords to</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'manifests/etc_default_passwd.pp', line 20</span>
+
+class solaris_tidy::etc_default_passwd(
+    $maxweeks     = &quot;13&quot;,
+    $minweeks     = &quot;1&quot;,
+    $warnweeks    = &quot;4&quot;,
+    $passlength   = &quot;8&quot;,
+    $namecheck    = &quot;YES&quot;,
+    $history      = &quot;10&quot;,
+    $mindiff      = &quot;3&quot;,
+    $minalpha     = &quot;2&quot;,
+    $minupper     = &quot;1&quot;,
+    $minlower     = &quot;1&quot;,
+    $minnonalpha  = &quot;1&quot;,
+    $maxrepeats   = &quot;0&quot;,
+    $whitespace   = &quot;YES&quot;,
+    $dictiondbdir = &quot;/var/passwd&quot;,
+    $dictionlist  = &quot;/usr/share/lib/dict/words&quot;,
+) {
+
+  Shellvar {
+    #ensure =&gt; present,
+    target =&gt; &quot;/etc/default/passwd&quot;,
+  }
+
+  shellvar { &quot;/etc/default/passwd MAXWEEKS&quot;:
+    variable =&gt; &quot;MAXWEEKS&quot;,
+    value    =&gt; $maxweeks,
+  }
+
+  shellvar { &quot;/etc/default/passwd MINWEEKS&quot;:
+    variable =&gt; &quot;MINWEEKS&quot;,
+    value    =&gt; $minweeks,
+  }
+
+  shellvar { &quot;/etc/default/passwd WARNWEEKS&quot;:
+    variable =&gt; &quot;WARNWEEKS&quot;,
+    value    =&gt; $warnweeks,
+  }
+
+  shellvar { &quot;/etc/default/passwd PASSLENGTH&quot;:
+    variable =&gt; &quot;PASSLENGTH&quot;,
+    value    =&gt; $passlength,
+  }
+
+  shellvar { &quot;/etc/default/passwd variableCHECK&quot;:
+    variable =&gt; &quot;NAMECHECK&quot;,
+    value    =&gt; $namecheck,
+  }
+
+  shellvar { &quot;/etc/default/passwd HISTORY&quot;:
+    variable =&gt; &quot;HISTORY&quot;,
+    value    =&gt; $history,
+  }
+
+  shellvar { &quot;/etc/default/passwd MINDIFF&quot;:
+    variable =&gt; &quot;MINDIFF&quot;,
+    value    =&gt; $mindiff,
+  }
+
+  shellvar { &quot;/etc/default/passwd MINALPHA&quot;:
+    variable =&gt; &quot;MINALPHA&quot;,
+    value    =&gt; $minalpha,
+  }
+
+  shellvar { &quot;/etc/default/passwd MINUPPER&quot;:
+    variable =&gt; &quot;MINUPPER&quot;,
+    value    =&gt; $minupper,
+  }
+
+  shellvar { &quot;/etc/default/passwd MINLOWER&quot;:
+    variable =&gt; &quot;MINLOWE&quot;,
+    value    =&gt; $minlower,
+  }
+
+  shellvar { &quot;/etc/default/passwd MINNONALPHA&quot;:
+    variable =&gt; &quot;MINNONALPHA&quot;,
+    value    =&gt; $minnonalpha,
+  }
+
+  shellvar { &quot;/etc/default/passwd MAXREPEATS&quot;:
+    variable =&gt; &quot;MAXREPEATS&quot;,
+    value    =&gt; $maxrepeats,
+  }
+
+  shellvar { &quot;/etc/default/passwd WHITESPACE&quot;:
+    variable =&gt; &quot;WHITESPACE&quot;,
+    value    =&gt; $whitespace,
+  }
+
+  shellvar { &quot;/etc/default/passwd DICTIONDBDIR&quot;:
+    variable =&gt; &quot;DICTIONDBDIR&quot;,
+    value    =&gt; $dictiondbdir,
+  }
+
+  shellvar { &quot;/etc/default/passwd DICTIONLIST&quot;:
+    variable =&gt; &quot;DICTIONLIST&quot;,
+    value    =&gt; $dictionlist,
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+  Generated on Sat Feb 25 00:30:45 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.8 (ruby-2.2.6).
+</div>
+
+    </div>
+  </body>
+</html>

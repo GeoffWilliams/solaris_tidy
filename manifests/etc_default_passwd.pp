@@ -16,8 +16,7 @@
 # @param maxrepeats Maximum allowed reapeated characters
 # @param whitespace Allow whitespace in passwords
 # @param dictiondbdir Dictionary DB Dir
-# @param dictionlist Wordlist compare passwords to,
-
+# @param dictionlist Wordlist compare passwords to
 class solaris_tidy::etc_default_passwd(
     $maxweeks     = "13",
     $minweeks     = "1",

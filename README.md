@@ -35,32 +35,13 @@ class { "foo:bar":
 Parameters, where available, are documented inside the individual classes.  For a complete reference, either consult the [module source code](manifests) or the [puppet-strings](https://github.com/puppetlabs/puppet-strings) [generated documentation](doc/index.html).
 
 ## Reference
+Reference documentation is generated directly from source code using [puppet-strings](https://github.com/puppetlabs/puppet-strings).  You may regenerate the documentation by running:
 
-### Classes
-`solaris_tidy::cron` Restrict access to cron
-`solaris_tidy::disable_network_routing` Disable TCP connection forwarding
-`solaris_tidy::disable_serial_login` Disable login on serial ports
-`solaris_tidy::etc_default_init` Set daemon umask
-`solaris_tidy::etc_default_keyserv` Entires in /etc/default/keyserv
-`solaris_tidy::etc_default_login` Entries in /etc/default/login
-`solaris_tidy::etc_default_passwd` Entries in /etc/default/passwd
-`solaris_tidy::etc_security_policy` Entries in /etc/security/policy
-`solaris_tidy::ftp` Lockdown the FTP daemon
-`solaris_tidy::gnome` Lockdown Gnome
-`solaris_tidy::inetd` Remove specified inetd services
-`solaris_tidy::logging` Configure various options for logging
-`solaris_tidy::mesg` Disable talk globally by default
-`solaris_tidy::pam` Disable rlogin in pam
-`solaris_tidy::password_policy_enforcement` Find and restrict users not complying with password policy
-`solaris_tidy::permissions` General OS permissions
-`solaris_tidy::protect_core_dumps` Configure core dumps
-`solaris_tidy::stack_protection` Configure stack protection
-`solaris_tidy::strong_tcp_sequence` Enable strong TCP sequence
-`solaris_tidy::telnet` Disable telnet and set its banner
-`solaris_tidy::umask_enforcement` Enforce correct umask in global login defaults
+```shell
+bundle exec puppet strings
+```
 
-### Facts
-* `openwin_installed` Detect the presence of openwin to see if Gnome can be locked down
+Or you may view the current [generated documentation](doc).
 
 ## Limitations
 * Solaris 10 only
