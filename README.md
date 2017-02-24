@@ -32,7 +32,7 @@ class { "foo:bar":
 }
 ```
 
-Parameters, where available, are documented inside the individual classes.  For a complete reference, either consult the [module source code](manifests) or the [puppet-strings](https://github.com/puppetlabs/puppet-strings) [generated documentation](doc/index.html).
+Parameters, where available, are documented inside the individual classes.  See [Reference section](#reference).
 
 ## Reference
 Reference documentation is generated directly from source code using [puppet-strings](https://github.com/puppetlabs/puppet-strings).  You may regenerate the documentation by running:
@@ -41,7 +41,9 @@ Reference documentation is generated directly from source code using [puppet-str
 bundle exec puppet strings
 ```
 
-Or you may view the current [generated documentation](doc).
+Or you may view the current [generated documentation](https://rawgit.com/GeoffWilliams/solaris_tidy/master/doc/index.html).
+
+The documentation is no substitute for reading and understanding the module source code, and all users should ensure they are familiar and comfortable with the operations this module performs before using it.
 
 ## Limitations
 * Solaris 10 only

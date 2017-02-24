@@ -49,7 +49,7 @@ class solaris_tidy::ftp(
   }
 
   # FTP Warning banner_message
-  if $banner {
+  if $banner_message {
     file { "/etc/ftpd/banner.msg":
       ensure  => file,
       owner   => "root",
