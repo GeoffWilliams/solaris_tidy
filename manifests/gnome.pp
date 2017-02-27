@@ -29,23 +29,24 @@ class solaris_tidy::gnome(
     }
 
     File_line {
-      ensure => present,
-      path   => $xscreensaver,
+      ensure   => present,
+      path     => $xscreensaver,
+      encoding => 'iso-8859-1',
     }
 
     file_line { "${xscreensaver} (timeout)":
-      match => '\*timeout:',
-      line  => "\\*timeout: ${timeout}",
+      match => '^*timeout:',
+      line  => "*timeout: ${timeout}",
     }
 
     file_line { "${xscreensaver} (lock_timeout)":
-      match => '\*lockTimeout:',
-      line  => "\\*lockTimeout: ${lock_timeout}",
+      match => '^*lockTimeout:',
+      line  => "*lockTimeout: ${lock_timeout}",
     }
 
     file_line { "${xscreensaver} (lock)":
-      match => '\*lock:',
-      line  => "\\*lock: ${lock}",
+      match => '^*lock:',
+      line  => "*lock: ${lock}",
     }
 
     ini_setting { "/etc/X11/gdm/gdm.conf Greeter":

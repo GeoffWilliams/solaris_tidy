@@ -4,3 +4,4 @@ Puppetfile.lock
 .librarian
 .tmp
 .yardoc
+.DS_Store

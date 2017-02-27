@@ -1,6 +1,6 @@
 {
   "name": "geoffwilliams-solaris_tidy",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "author": "geoffwilliams",
   "summary": "Tidy up and lock down little solaris niggles",
   "license": "Apache-2.0",
@@ -8,7 +8,7 @@
   "project_page": "https://github.com/GeoffWilliams/solaris_tidy",
   "issues_url": "https://github.com/GeoffWilliams/solaris_tidy/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 4.15.0"},
+    {"name":"geoffwilliams-stdlib","version_requirement":">= 4.15.1"},
     {"name":"geoffwilliams-chmod_r","version_requirement":"0.1.2"},
     {"name":"geoffwilliams-chown_r","version_requirement":"0.2.0"},
     {"name":"geoffwilliams-comment_line","version_requirement":"0.1.0"},
